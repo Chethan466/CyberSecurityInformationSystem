@@ -1,0 +1,363 @@
+/* CyberShield - Manage Assets Page
+   Designed for clarity, usability, and futuristic look
+   Font: Orbitron (headers) + Roboto (body)
+*/
+
+:root {
+    --bg-dark: #0d1117;
+    --bg-card: #161b22;
+    --accent: #00d4ff;
+    --text-light: #e6edf3;
+    --text-muted: #9ba3af;
+    --danger: #ff4c4c;
+    --success: #00ff9c;
+    --warning: #ffb74d;
+    --radius: 10px;
+    --transition: 0.3s ease;
+}
+
+/* ---------------- PAGE LAYOUT ---------------- */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* ---------------- SIDEBAR ---------------- */
+.sidebar {
+    width: 250px;
+    background-color: var(--bg-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.6);
+    position: fixed; /* keeps sidebar fixed */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 40px;
+}
+
+.nav-menu li {
+    margin: 15px 0;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    background-color: var(--accent);
+    color: #000;
+    font-weight: 500;
+}
+
+.logout a {
+    text-decoration: none;
+    color: var(--danger);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.logout a:hover {
+    color: #ff7070;
+}
+
+/* ---------------- MAIN CONTENT ---------------- */
+.main-content {
+    flex: 1;
+    margin-left: 250px; /* offset for fixed sidebar */
+    padding: 30px 40px;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.content-header h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent);
+}
+
+.current-time {
+    font-size: 0.9rem;
+    color: var(--accent);
+}
+
+.flag {
+    font-size: 1.2rem;
+    margin-right: 6px;
+}
+
+/* ---------------- ALERTS ---------------- */
+.alert {
+    padding: 12px 15px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert.success {
+    background-color: rgba(0, 255, 156, 0.1);
+    color: var(--success);
+    border-left: 4px solid var(--success);
+}
+
+.alert.error {
+    background-color: rgba(255, 76, 76, 0.1);
+    color: var(--danger);
+    border-left: 4px solid var(--danger);
+}
+
+/* ---------------- FORM STYLES ---------------- */
+.add-form, .table-container {
+    background-color: var(--bg-card);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.1);
+    margin-bottom: 25px;
+}
+
+.add-form h2,
+.table-container h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.asset-form .form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--radius);
+    border: 1px solid #2d3748;
+    background-color: #0f141b;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* BUTTONS */
+.btn-primary,
+.btn-edit,
+.btn-delete,
+.btn-danger,
+.btn-secondary {
+    border: none;
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    padding: 8px 15px;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: #000;
+}
+
+.btn-primary:hover {
+    background-color: #00b4e0;
+}
+
+.btn-edit {
+    background-color: var(--success);
+    color: #000;
+}
+
+.btn-edit:hover {
+    background-color: #00e5a4;
+}
+
+.btn-delete {
+    background-color: var(--danger);
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background-color: #ff6f6f;
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #333;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #444;
+}
+
+/* ---------------- TABLE ---------------- */
+.assets-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+
+.assets-table th, .assets-table td {
+    border: 1px solid #2d3748;
+    padding: 10px;
+    text-align: left;
+}
+
+.assets-table th {
+    background-color: #11161d;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.assets-table tr:nth-child(even) {
+    background-color: #131921;
+}
+
+.assets-table tr:hover {
+    background-color: rgba(0, 212, 255, 0.05);
+}
+
+/* ---------------- MODAL ---------------- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--bg-card);
+    padding: 25px;
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+    width: 90%;
+    max-width: 400px;
+}
+
+.modal-content h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    color: var(--text-light);
+}
+
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        height: auto;
+        box-shadow: none;
+        padding: 10px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .assets-table {
+        font-size: 0.8rem;
+    }
+
+    .asset-form input, .asset-form select, .asset-form textarea {
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,361 @@
+/* === GLOBAL RESET === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background: #0a0a0f;
+    color: #f1f1f1;
+    overflow-x: hidden;
+}
+
+/* === SIDEBAR === */
+.sidebar {
+    width: 250px;
+    background: #111420;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid #1f2230;
+    padding: 20px 0;
+    position: fixed; /* stays in place */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    box-shadow: 2px 0 10px rgba(0, 201, 255, 0.1);
+    z-index: 100;
+}
+
+.logo {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6em;
+    color: #00c9ff;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 201, 255, 0.8);
+}
+
+.logo i {
+    color: #00c9ff;
+    margin-right: 10px;
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0 10px;
+}
+
+.nav-menu ul li {
+    margin: 10px 0;
+}
+
+.nav-menu ul li a {
+    color: #bbb;
+    text-decoration: none;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+    border-left: 3px solid transparent;
+    border-radius: 5px;
+}
+
+.nav-menu ul li a:hover,
+.nav-menu ul li a.active {
+    color: #00c9ff;
+    background: rgba(0, 201, 255, 0.1);
+    border-left: 3px solid #00c9ff;
+    box-shadow: 0 0 10px rgba(0, 201, 255, 0.2);
+}
+
+.nav-menu ul li a i {
+    margin-right: 10px;
+}
+
+.logout {
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid #1f2230;
+}
+
+.logout a {
+    color: #f44336;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.logout a:hover {
+    color: #ff6666;
+}
+
+/* === MAIN CONTENT === */
+.main-content {
+    flex: 1;
+    margin-left: 250px; /* space for fixed sidebar */
+    padding: 25px;
+    background: #0a0a0f;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #1f2230;
+    padding-bottom: 10px;
+}
+
+.content-header h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00c9ff;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(0, 201, 255, 0.8);
+}
+
+.current-time {
+    font-size: 0.9em;
+    color: #bbb;
+}
+
+.flag {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* === TABLE CONTAINER === */
+.table-container {
+    background: #131722;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 201, 255, 0.1);
+    overflow-x: auto;
+}
+
+.table-container h2 {
+    margin-bottom: 15px;
+    color: #00c9ff;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 8px rgba(0, 201, 255, 0.5);
+}
+
+.assets-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #f1f1f1;
+}
+
+.assets-table th,
+.assets-table td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #1f2230;
+}
+
+.assets-table th {
+    background: #0f121a;
+    color: #00c9ff;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.5px;
+}
+
+.assets-table tr:hover {
+    background: rgba(0, 201, 255, 0.05);
+    transition: 0.3s;
+}
+
+/* === BADGES (Status & Severity) === */
+.badge-LOW,
+.badge-MEDIUM,
+.badge-HIGH,
+.badge-CRITICAL,
+.badge-UNREAD,
+.badge-READ,
+.badge-RESOLVED {
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.badge-LOW {
+    background: #28a745;
+    color: white;
+}
+
+.badge-MEDIUM {
+    background: #ffc107;
+    color: #111;
+}
+
+.badge-HIGH {
+    background: #fd7e14;
+    color: white;
+}
+
+.badge-CRITICAL {
+    background: #dc3545;
+    color: white;
+}
+
+.badge-UNREAD {
+    background: #dc3545;
+    color: white;
+    animation: glowPulse 1.2s infinite alternate;
+}
+
+.badge-READ {
+    background: #6c757d;
+    color: white;
+}
+
+.badge-RESOLVED {
+    background: #28a745;
+    color: white;
+}
+
+/* === GLOW EFFECT FOR UNREAD === */
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 5px #ff4c4c, 0 0 10px #ff4c4c;
+        transform: scale(1);
+    }
+    100% {
+        box-shadow: 0 0 20px #ff4c4c, 0 0 35px #ff0000;
+        transform: scale(1.05);
+    }
+}
+
+/* === BUTTONS === */
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-primary,
+.btn-edit,
+.btn-delete {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.btn-primary,
+.btn-edit {
+    background: #00c9ff;
+    color: #111;
+}
+
+.btn-primary:hover,
+.btn-edit:hover {
+    background: #009ac7;
+}
+
+.btn-delete {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #b52a36;
+}
+
+.inline {
+    display: inline-block;
+}
+
+/* === UNREAD COUNT INDICATOR === */
+.unread-count {
+    background: #dc3545;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 0.8em;
+    margin-left: 6px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+}
+
+/* === FOOTER === */
+.footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #777;
+    font-size: 0.85em;
+    border-top: 1px solid #1f2230;
+    padding-top: 10px;
+    letter-spacing: 0.5px;
+}
+
+.footer a {
+    color: #00c9ff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 900px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+        padding: 20px;
+    }
+
+    .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .assets-table th,
+    .assets-table td {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .table-container {
+        padding: 10px;
+    }
+
+    .assets-table {
+        font-size: 0.8em;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .footer {
+        font-size: 0.75em;
+    }
+}

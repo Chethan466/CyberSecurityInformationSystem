@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CyberShield</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        .current-time { 
+            text-align: center; 
+            margin: 15px 0; 
+            color: #00d4ff; 
+            font-size: 0.95rem; 
+        }
+        .flag { 
+            font-size: 1.3rem; 
+            margin-right: 6px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <i class="fas fa-shield-alt"></i>
+                <h2>Login to CyberShield</h2>
+                <p>Secure access to your dashboard</p>
+            </div>
+
+            <!-- Live IST Clock -->
+            <div class="current-time">
+                <span class="flag">IN</span>
+                <span id="live-time">Loading time...</span>
+            </div>
+
+            <form th:action="@{/login}" method="post" class="auth-form">
+                <!-- SUCCESS FROM REGISTRATION -->
+                <div th:if="${message}" class="alert success">
+                    <i class="fas fa-check-circle"></i> <span th:text="${message}"></span>
+                </div>
+
+                <!-- ERROR -->
+                <div th:if="${param.error}" class="alert error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Invalid username or password!</span>
+                </div>
+
+                <!-- LOGOUT SUCCESS -->
+                <div th:if="${param.logout}" class="alert success">
+                    <i class="fas fa-check-circle"></i>
+                    <span>You have been logged out.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter username" />
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter password" />
+                </div>
+
+                <button type="submit" class="btn btn-primary full-width">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a th:href="@{/register}">Register here</a></p>
+                <p><a th:href="@{/}">Back to Home</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live IST Clock Script -->
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const options = {
+                timeZone: 'Asia/Kolkata',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            };
+            const timeStr = now.toLocaleTimeString('en-IN', options);
+            const dateStr = now.toLocaleDateString('en-IN', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            document.getElementById('live-time').textContent = `${dateStr} | ${timeStr} IST`;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>

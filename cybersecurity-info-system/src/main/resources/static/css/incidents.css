@@ -1,0 +1,320 @@
+/* ==============================
+   CyberShield - Incidents Page
+   Futuristic Dark UI
+   Font: Orbitron (titles) + Roboto (body)
+   ============================== */
+
+:root {
+    --bg-dark: #0d1117;
+    --bg-card: #161b22;
+    --accent: #00d4ff;
+    --text-light: #e6edf3;
+    --text-muted: #9ba3af;
+    --success: #00ff9c;
+    --danger: #ff4c4c;
+    --warning: #ffb74d;
+    --critical: #ff0044;
+    --radius: 10px;
+    --transition: 0.3s ease;
+}
+
+/* ------------ GLOBAL ------------ */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    display: flex;
+    height: 100vh;
+}
+
+.dashboard-container {
+    display: flex;
+    width: 100%;
+}
+
+/* ------------ SIDEBAR ------------ */
+.sidebar {
+    width: 250px;
+    background-color: var(--bg-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.nav-menu ul {
+    list-style: none;
+    margin-top: 40px;
+    padding: 0;
+}
+
+.nav-menu li {
+    margin: 15px 0;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    background-color: var(--accent);
+    color: #000;
+    font-weight: 500;
+}
+
+.logout a {
+    text-decoration: none;
+    color: var(--danger);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.logout a:hover {
+    color: #ff6f6f;
+}
+
+/* ------------ MAIN CONTENT ------------ */
+.main-content {
+    flex: 1;
+    padding: 30px 40px;
+    overflow-y: auto;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.content-header h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent);
+    font-size: 1.8rem;
+}
+
+.current-time {
+    font-size: 0.9rem;
+    color: var(--accent);
+}
+
+.flag {
+    font-size: 1.2rem;
+    margin-right: 6px;
+}
+
+/* ------------ ALERTS ------------ */
+.alert {
+    padding: 12px 15px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.alert.success {
+    background-color: rgba(0, 255, 156, 0.1);
+    color: var(--success);
+    border-left: 4px solid var(--success);
+}
+
+.alert.error {
+    background-color: rgba(255, 76, 76, 0.1);
+    color: var(--danger);
+    border-left: 4px solid var(--danger);
+}
+
+/* ------------ ADD INCIDENT FORM ------------ */
+.add-form {
+    background-color: var(--bg-card);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.15);
+    margin-bottom: 25px;
+}
+
+.add-form h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.add-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.add-form input,
+.add-form textarea,
+.add-form select {
+    background-color: #0f141b;
+    border: 1px solid #2d3748;
+    border-radius: var(--radius);
+    padding: 10px;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.add-form input:focus,
+.add-form textarea:focus,
+.add-form select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: #000;
+    border: none;
+    padding: 10px 15px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: #00b4e0;
+}
+
+/* ------------ TABLE ------------ */
+.table-container {
+    background-color: var(--bg-card);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.1);
+}
+
+.table-container h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.assets-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.assets-table th,
+.assets-table td {
+    border: 1px solid #2d3748;
+    padding: 10px;
+    text-align: left;
+}
+
+.assets-table th {
+    background-color: #11161d;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.assets-table tr:nth-child(even) {
+    background-color: #131921;
+}
+
+.assets-table tr:hover {
+    background-color: rgba(0, 212, 255, 0.05);
+}
+
+/* ------------ BADGES ------------ */
+.badge-LOW {
+    color: #00ff9c;
+    font-weight: bold;
+}
+
+.badge-MEDIUM {
+    color: #ffb74d;
+    font-weight: bold;
+}
+
+.badge-HIGH {
+    color: #ff6f61;
+    font-weight: bold;
+}
+
+.badge-CRITICAL {
+    color: #ff0044;
+    font-weight: bold;
+    text-shadow: 0 0 6px rgba(255, 0, 68, 0.7);
+}
+
+/* ------------ INLINE FORM (STATUS UPDATE) ------------ */
+.inline select {
+    background-color: #0f141b;
+    border: 1px solid #2d3748;
+    color: var(--text-light);
+    padding: 6px 8px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.inline select:hover {
+    border-color: var(--accent);
+}
+
+/* ------------ RESPONSIVE ------------ */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+        box-shadow: none;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .assets-table {
+        font-size: 0.8rem;
+    }
+
+    .add-form input,
+    .add-form textarea,
+    .add-form select {
+        font-size: 0.9rem;
+    }
+}

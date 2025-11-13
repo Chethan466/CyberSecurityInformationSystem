@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield - Enterprise Security Platform</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <div class="hero-container">
+        <header class="hero-header">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>CyberShield</span>
+            </div>
+        </header>
+
+        <main class="hero-content">
+            <h1>Cyber Security Information System</h1>
+            <p class="tagline">Detect. Respond. Secure. Real-time Threat Management.</p>
+
+            <div class="action-buttons">
+                <a th:href="@{/login}" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+                <a th:href="@{/register}" class="btn btn-secondary">
+                    <i class="fas fa-user-plus"></i> Register
+                </a>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-bug"></i>
+                    <span>Vulnerability Scanner</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Incident Response</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-bell"></i>
+                    <span>Real-time Alerts</span>
+                </div>
+            </div>
+        </main>
+
+        <footer class="hero-footer">
+            <p> © 2025 CyberShield | India — Protect • Detect • Defend</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile - CyberShield</title>
+    <link rel="stylesheet" th:href="@{/css/profile.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Sidebar (Copy from vulnerabilities.html) -->
+    <aside class="sidebar">
+        <div class="logo"><i class="fas fa-shield-alt"></i> <span>CyberShield</span></div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li sec:authorize="hasRole('ADMIN')"><a href="/admin/users"><i class="fas fa-users-cog"></i> Manage Users</a></li>
+                <li sec:authorize="hasRole('ADMIN')"><a href="/admin/assets"><i class="fas fa-server"></i> Manage Assets</a></li>
+                <li><a href="/incidents"><i class="fas fa-exclamation-triangle"></i> Incidents</a></li>
+                <li><a href="/vulnerabilities"><i class="fas fa-bug"></i> Vulnerabilities</a></li>
+                <li><a href="/alerts"><i class="fas fa-bell"></i> Alerts</a></li>
+                <li><a href="/profile" class="active"><i class="fas fa-user"></i> My Profile</a></li>
+            </ul>
+        </nav>
+        <div class="logout"><a th:href="@{/}"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
+    </aside>
+
+    <main class="main-content">
+        <header class="content-header">
+            <h1>My Profile</h1>
+            <p class="current-time"><span class="flag">IN</span> <span id="live-time">Loading...</span></p>
+        </header>
+
+        <!-- Flash Messages -->
+        <div th:if="${message}" class="alert success"><i class="fas fa-check"></i> <span th:text="${message}"></span></div>
+        <div th:if="${error}" class="alert error"><i class="fas fa-times"></i> <span th:text="${error}"></span></div>
+
+        <!-- Profile Details -->
+        <div class="profile-details">
+            <h2>User Information</h2>
+            <p><strong>Username:</strong> <span th:text="${user.username}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+            <p><strong>Role:</strong> <span th:text="${user.role}"></span></p>
+            <p><strong>Created At:</strong> <span th:text="${#temporals.format(user.createdAt, 'dd-MM-yyyy HH:mm')}"></span></p>
+            <p><strong>Last Updated:</strong> <span th:text="${#temporals.format(user.updatedAt, 'dd-MM-yyyy HH:mm')}"></span></p>
+
+            <a th:href="@{/profile/edit}" class="btn-primary">Edit Profile</a>
+        </div>
+    </main>
+</div>
+
+<script>
+    function updateTime() {
+        const now = new Date();
+        const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+        const timeStr = now.toLocaleTimeString('en-IN', options);
+        const dateStr = now.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        document.getElementById('live-time').textContent = `${dateStr} | ${timeStr} IST`;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+</script>
+</body>
+</html>
